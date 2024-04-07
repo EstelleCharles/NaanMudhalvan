@@ -1,0 +1,58 @@
+{% extends 'musicbeats/basic.htm' %}
+{% block title %}MusicBeats{% endblock %}
+
+{% block body %}
+    {% load static %}
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'musicbeats/hp-bg.jpg'%}" class="d-block w-100 h-50" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'musicbeats/hp-bg.jpg'%}" class="d-block w-100 h-50" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'musicbeats/hp-bg.jpg'%}" class="d-block w-100 h-50" alt="...">
+      </div>
+    </div>
+  </div>
+   
+    <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Trending Songs</h2>
+
+    <div class="row" style="padding-top: 2%; padding-left: 7%;">
+    {% for i in song %}
+    <div class="col-md-4" style="padding-top: 1%;">
+        <div class="card">
+            <img src="{{ i.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.name }}</h5>
+                <p class="card-text text-muted">Movie: {{ i.movie }}</p>
+                <div class="btn-group" role="group">
+                    <a href="/musicbeats/songs/{{ i.song_id }}" class="btn btn-outline-danger">Add to Playlist</a>
+                    <a href="/musicbeats/songs/{{ i.song_id }}" class="btn btn-outline-danger">Play now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    <hr>
+
+    <h3 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Playlist</h3>
+
+    <div class="row" style="padding-top: 2%; padding-left: 7%;">
+    {% for i in watch reversed %}
+    <div class="col-md-4" style="padding-top: 1%;">
+        <div class="card">
+            <img src="{{ i.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.name }}</h5>
+                <p class="card-text text-muted">Movie: {{ i.movie }}</p>
+                <a href="/musicbeats/songs/{{ i.song_id }}" class="btn btn-outline-danger">Play now</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    <hr>
+{% endblock %}
